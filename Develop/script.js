@@ -1,10 +1,7 @@
 // Assignment code here
 
-var ranPass = [];
-
 // Get references to the #generate element
-var generateBtn = document.querySelector("#generate");
-console.log("hello");
+var generateBtn = document.querySelector("#generate")
 
 //pull from array and render on form
 function generatePassword(upperCase, lowerCase, numbers, special, length) {
@@ -18,30 +15,34 @@ function generatePassword(upperCase, lowerCase, numbers, special, length) {
 
     var tempArray = [];
     if(upperCase){
-      var character = letters[Math.floor(Math.random() * letters.length - 1)];
+      var character = letters[Math.floor(Math.random() * letters.length)];
       console.log(character)
       tempArray.push(character.toUpperCase())
     }
     if(lowerCase){
-      tempArray.push(letters[Math.floor(Math.random() * letters.length - 1)]);
+      tempArray.push(letters[Math.floor(Math.random() * letters.length)]);
     }
     if(numbers){
-      tempArray.push(numbers[Math.floor(Math.random() * numbers.length - 1)]);
+      tempArray.push(numbers[Math.floor(Math.random() * numbers.length)]);
     }
     if(special){
-      tempArray.push(special[Math.floor(Math.random() * special.length - 1)])
+      tempArray.push(special[Math.floor(Math.random() * special.length)])
     }
-    generatedPassword += tempArray[Math.floor(Math.random() * tempArray.length - 1)]
+    generatedPassword += tempArray[Math.floor(Math.random() * tempArray.length)]
   }
     
   return generatedPassword;
 }
+
 // Write password to the #password input
 function writePassword() {
+  
   var characterLength = prompt(
     "how long would you like your password to be?(between 8 - 128)"
-  );
-
+    );
+    while(characterLength <8 || characterLength >128) {
+      characterLength = prompt("how long would you like your password to be?(between 8 - 128)")
+    }
   var confirmUpper = confirm(
     "would you like upper case letters? (ok = YES, cancel = NO"
   );
@@ -52,7 +53,7 @@ function writePassword() {
   );
   
 
-  var numConfirm = confirm("would you like nunmbers? ok = YES, cancel = NO");
+  var numConfirm = confirm("would you like numbers? ok = YES, cancel = NO");
   
 
   var specCharConfirm = confirm(
@@ -67,11 +68,6 @@ function writePassword() {
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
-
-
-  // for(var i = 0; i < questions.length; i++)
-  // //ask what characters you want
-  // confirm(questions[i].question)
 
 
 //special characters you will have to escape maybe the backslash "/"
