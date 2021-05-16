@@ -1,8 +1,8 @@
-![](assets/images/001.png)
+![](Assets/Images/001.png)
 
-![](assets/images/002.png)
+![](Assets/Images/002.png)
 
-![](assets/images/003.png)
+![](Assets/Images/003.png)
 
 # Password-Generator
 
