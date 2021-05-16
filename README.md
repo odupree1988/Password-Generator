@@ -15,7 +15,7 @@
 * JS
 
 ## Website
-https://odupree1988.github.io/Password-Generator
+https://odupree1988.github.io/Password-Generator/
 
 ## Contribution
 Made by Owen Dupree
