@@ -1,95 +1,4 @@
 // Assignment code here
-var upperCase = [
-  "A",
-  "B",
-  "C",
-  "D",
-  "E",
-  "F",
-  "G",
-  "H",
-  "I",
-  "J",
-  "K",
-  "L",
-  "M",
-  "N",
-  "O",
-  "P",
-  "Q",
-  "R",
-  "S",
-  "T",
-  "U",
-  "V",
-  "W",
-  "X",
-  "Y",
-  "Z",
-];
-
-var lowerCase = [
-  "a",
-  "b",
-  "c",
-  "d",
-  "e",
-  "f",
-  "g",
-  "h",
-  "i",
-  "j",
-  "k",
-  "l",
-  "m",
-  "n",
-  "o",
-  "p",
-  "q",
-  "r",
-  "s",
-  "t",
-  "u",
-  "v",
-  "w",
-  "x",
-  "y",
-  "z",
-];
-
-var numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
-
-var specialCharacters = [
-  "!",
-  "#",
-  "$",
-  "%",
-  "&",
-  "(",
-  ")",
-  "*",
-  "+",
-  ",",
-  "-",
-  ".",
-  "/",
-  ":",
-  ";",
-  "<",
-  "=",
-  ">",
-  "?",
-  "@",
-  "[",
-  "\\",
-  "]",
-  "^",
-  "_",
-  "{",
-  "}",
-  "|",
-  "~",
-];
 
 var ranPass = [];
 
@@ -97,76 +6,72 @@ var ranPass = [];
 var generateBtn = document.querySelector("#generate");
 console.log("hello");
 
+//pull from array and render on form
+function generatePassword(upperCase, lowerCase, numbers, special, length) {
+  console.log(upperCase, lowerCase, numbers, special)
+  var generatedPassword = '';
+  var letters = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"],
+      numbers = [1,2,3,4,5,6,7,8,9,0],
+      special = ["!","#","$","%","&","(",")","*","+",",","-",".","/",":",";","<","=",">","?","@","[","]","^","_","{","}","|","~"]
+  
+  for (var i = 0; i < length; i++) {
+
+    var tempArray = [];
+    if(upperCase){
+      var character = letters[Math.floor(Math.random() * letters.length - 1)];
+      console.log(character)
+      tempArray.push(character.toUpperCase())
+    }
+    if(lowerCase){
+      tempArray.push(letters[Math.floor(Math.random() * letters.length - 1)]);
+    }
+    if(numbers){
+      tempArray.push(numbers[Math.floor(Math.random() * numbers.length - 1)]);
+    }
+    if(special){
+      tempArray.push(special[Math.floor(Math.random() * special.length - 1)])
+    }
+    generatedPassword += tempArray[Math.floor(Math.random() * tempArray.length - 1)]
+  }
+    
+  return generatedPassword;
+}
 // Write password to the #password input
 function writePassword() {
-  var password = generatePassword();
-  var passwordText = document.querySelector("#password");
-  console.log(ranPass)
-  
-  passwordText.value = ranPass.join('');
-}
-
-// Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
-function generatePassword() {
   var characterLength = prompt(
     "how long would you like your password to be?(between 8 - 128)"
   );
-  console.log(characterLength);
 
   var confirmUpper = confirm(
     "would you like upper case letters? (ok = YES, cancel = NO"
   );
-  if (confirmUpper) {
-    var upperArray =
-      upperCase[Math.floor(Math.random() * upperCase.length - 1)];
-    ranPass.push(upperArray);
-    console.log("upperArray");
-    console.log(upperArray);
-    console.log("ranPass");
-    console.log(ranPass);
-  }
+
 
   var confirmLower = confirm(
     "would you like lower case letters? (ok = YES, cancel = NO"
   );
-  if (confirmLower) {
-    var lowerArray =
-      lowerCase[Math.floor(Math.random() * lowerCase.length - 1)];
-    ranPass.push(lowerArray);
-    console.log("lowerArray");
-    console.log(lowerArray);
-    console.log("ranPass");
-    console.log(ranPass);
-  }
+  
 
-  var numConfir = confirm("would you like nunmbers? ok = YES, cancel = NO");
-  if (numConfir) {
-    var numArray = numbers[Math.floor(Math.random() * numbers.length - 1)];
-    ranPass.push(numArray);
-    console.log("numArray");
-    console.log(numArray);
-    console.log("ranPass");
-    console.log(ranPass);
-  }
+  var numConfirm = confirm("would you like nunmbers? ok = YES, cancel = NO");
+  
 
   var specCharConfirm = confirm(
     "would you like special characters? ok = YES, cancel = NO"
   );
-  if (specCharConfirm) {
-    var specArray =
-      specialCharacters[
-        Math.floor(Math.random() * specialCharacters.length - 1)
-      ];
-    ranPass.push(specArray);
-    console.log("specArray");
-    console.log(specArray);
-    console.log("ranPass")
-    console.log(ranPass)
+
+  var passwordText = document.querySelector("#password");
+  
+  passwordText.value = generatePassword(confirmUpper, confirmLower, numConfirm, specCharConfirm, characterLength);
+
   }
+
+// Add event listener to generate button
+generateBtn.addEventListener("click", writePassword);
+
+
   // for(var i = 0; i < questions.length; i++)
   // //ask what characters you want
   // confirm(questions[i].question)
-}
+
 
 //special characters you will have to escape maybe the backslash "/"
