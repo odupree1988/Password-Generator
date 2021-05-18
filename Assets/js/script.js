@@ -4,13 +4,7 @@
 var generateBtn = document.querySelector("#generate");
 
 //pull from array and render on form
-function generatePassword(
-  upperCase,
-  lowerCase,
-  numbersConfirm,
-  specialChar,
-  length
-) {
+function generatePassword(upperCase, lowerCase, numbersConfirm, specialChar, length) {
   console.log(upperCase, lowerCase, numbersConfirm, specialChar);
   var generatedPassword = "";
   var letters = [
@@ -75,8 +69,8 @@ function generatePassword(
 
   for (var i = 0; i < length; i++) {
     var tempArray = [];
-    console.log(tempArray);
-    console.log({ upperCase, lowerCase, numbersConfirm, specialChar });
+    console.log(tempArray)
+    console.log({upperCase,lowerCase,numbersConfirm,specialChar})
     if (upperCase) {
       var character = letters[Math.floor(Math.random() * letters.length)];
       console.log(character);
@@ -91,7 +85,7 @@ function generatePassword(
     if (specialChar) {
       tempArray.push(special[Math.floor(Math.random() * special.length)]);
     }
-    generatedPassword =+
+    generatedPassword +=
       tempArray[Math.floor(Math.random() * tempArray.length)];
   }
 
@@ -104,32 +98,26 @@ function writePassword() {
     "how long would you like your password to be?(between 8 - 128)"
   );
   if (characterLength < 8 || characterLength > 128) {
+    alert("Please choose between 8 and 128 characters.")
     writePassword()
-    console.log(characterLength);
   }
   var confirmUpper = confirm(
     "would you like upper case letters? (ok = YES, cancel = NO"
   );
-  console.log(confirmUpper);
+    console.log(confirmUpper)
 
   var confirmLower = confirm(
     "would you like lower case letters? (ok = YES, cancel = NO"
   );
-  console.log(confirmLower);
+  console.log(confirmLower)
 
   var numConfirm = confirm("would you like numbers? ok = YES, cancel = NO");
-  console.log(numConfirm);
+  console.log(numConfirm)
 
   var specCharConfirm = confirm(
     "would you like special characters? ok = YES, cancel = NO"
   );
-  console.log(specCharConfirm);
-
-  if (!confirmLower && !confirmUpper && !numConfirm && !specCharConfirm) {
-    alert("Please choose at least one option");
-    writePassword();
-  }
-
+  console.log(specCharConfirm)
   var passwordText = document.querySelector("#password");
 
   passwordText.value = generatePassword(
@@ -140,6 +128,7 @@ function writePassword() {
     characterLength
   );
 }
+
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
