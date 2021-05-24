@@ -105,8 +105,7 @@ function writePassword() {
   if (
     characterLength < 8 ||
     characterLength > 128 ||
-    isNaN < 8 ||
-    isNaN > 128
+    isNaN(characterLength)
   ) {
     alert("Please choose between 8 and 128 characters.");
     writePassword();
@@ -127,6 +126,10 @@ function writePassword() {
     var specCharConfirm = confirm(
       "would you like special characters? ok = YES, cancel = NO"
     );
+    if (!confirmUpper && !confirmLower && !numConfirm && !specCharConfirm) {
+      alert("Please select at least one option");
+      writePassword();
+    }
     console.log(specCharConfirm);
     var passwordText = document.querySelector("#password");
 
